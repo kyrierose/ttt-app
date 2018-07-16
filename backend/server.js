@@ -12,7 +12,7 @@ app.use(bodyParser.json())
 app.use(cors())
 
 //responses from api route
-//app.use('/api', api)
+app.use('/api', api)
 
 //Handles landing page
 app.get('/', (req, res)=>{
