@@ -1,6 +1,5 @@
 import express from 'express'
 import request from 'request'
-import { SSL_OP_NO_TLSv1_2 } from 'constants';
 
 //Initialise the router
 const router = express.Router()
@@ -28,12 +27,14 @@ function intialize(){
     })
 }
 
-let downloaded_text
-let final_object = {}
-
-router.post('/:id', (req, res)=>{    
+router.get('/:id', (req, res)=>{    
+    //Holds value of N passed
     const num = req.params.id
-    //callback(num, res)
+    //variables
+    let downloaded_text
+    let final_array = []
+    
+    //Promise init
     var initializePromise = intialize();
     initializePromise.then(function(result) {
         downloaded_text = result;
@@ -45,12 +46,17 @@ router.post('/:id', (req, res)=>{
             //get key for max object
             let max_element_key = Object.keys(freqObj).reduce((a, b) => freqObj[a] > freqObj[b] ? a : b)
             let max_element_value = freqObj[max_element_key]
-            //push these key-value to new object
-            final_object[max_element_key] = max_element_value
+            //create a new temp
+            let tempObject = { 
+                word : max_element_key, 
+                freq : max_element_value
+            }
+            //pushing temporary object to array
+            final_array.push(tempObject)
             //remove max_element from freqObj
             delete freqObj[max_element_key]
         }
-        res.send(JSON.stringify(final_object))
+        res.send(final_array)
     }, function(err) {
         console.log(err);
         res.send({msg: 'Error fetching the data.', status:500})

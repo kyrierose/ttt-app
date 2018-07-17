@@ -4,8 +4,19 @@
     Welcome to {{ title }}!
   </h1>
 </div>
-<form>
-  <label>Enter the number of frequent words:</label>
-  <input [(ngModel)]="num" name="num" required>
+<form style="text-align: center" id="input-form">
+  <label>Enter the number:</label><br ><br >
+  <input [(ngModel)]="num" name="num" min=1 required>
   <input type="submit" (click)="onSubmit()" >
 </form>
+<br><br>
+<table id="display-table" class="center" style="visibility: hidden">
+  <tr>
+      <th>Word</th>
+      <th>Frequency</th>
+  </tr>
+  <tr *ngFor="let obj of resultArray">
+      <td>{{obj.word}}</td>
+      <td>{{obj.freq}}</td>
+  </tr>
+</table>

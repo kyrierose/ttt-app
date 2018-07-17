@@ -8,8 +8,9 @@ import api from './Routes/api';
 const PORT = 3000
 const app = express()
 
-app.use(bodyParser.json())
 app.use(cors())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}) );
 
 //responses from api route
 app.use('/api', api)
