@@ -32,3 +32,4 @@ $ ng serve -o
 $ cd backend
 $ npm start
 ```
+### View the model on https://goo.gl/NfZVWA
