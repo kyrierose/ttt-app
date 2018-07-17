@@ -26,7 +26,7 @@ function intialize(){
         });
     })
 }
-
+ 
 router.get('/:id', (req, res)=>{    
     //Holds value of N passed
     const num = req.params.id
@@ -48,7 +48,7 @@ router.get('/:id', (req, res)=>{
             let max_element_value = freqObj[max_element_key]
             //create a new temp
             let tempObject = { 
-                word : max_element_key, 
+                word : max_element_key,  
                 freq : max_element_value
             }
             //pushing temporary object to array
